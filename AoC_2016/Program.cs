@@ -60,41 +60,13 @@ namespace AoC_D1
                 EWblocks = EWblocks * -1;
 
             int totalBlocks = NSblocks + EWblocks;
+            
             // Answer to part 1:
             Console.WriteLine("TotalBlocks of all the instructions was: {0}",totalBlocks);
 
             // Look for the first place to be visited twice
-            bool foundMatch = false;
-            Coordinates firstRepeat = new Coordinates();
-            foreach (Coordinates i in places)
-            {
-                foreach (Coordinates c in places)
-                {
-                    // lets not test ourself
-                    if(i != c)
-                    {
-                        if (i.NS == c.NS && i.EW == c.EW)
-                        {
-                            firstRepeat.NS = c.NS;
-                            firstRepeat.EW = c.EW;
-                            foundMatch = true;
-                        }
-                    }
-                    if (foundMatch)
-                        break;
-                }
-                if (foundMatch)
-                    break;
-            }
-            // when all of that is done we make sure that its all positive
-            if (firstRepeat.NS < 0)
-                firstRepeat.NS = firstRepeat.NS * -1;
+            /
 
-            if (firstRepeat.EW < 0)
-                firstRepeat.EW = firstRepeat.EW * -1;
-
-            totalBlocks = firstRepeat.NS + firstRepeat.EW;
-            Console.WriteLine("The first repeat was at {0}.{1}: {2} blocks away", firstRepeat.NS, firstRepeat.EW, totalBlocks);
 
             Console.ReadLine();
 
@@ -154,6 +126,8 @@ namespace AoC_D1
         {
             public int NS;
             public int EW;
+
+            public bool iWashere = false;
         }
     }
 }
