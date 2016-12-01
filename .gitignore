@@ -1,0 +1,13 @@
+#################
+## Visual Studio
+#################
+
+.vs
+*.TMP
+
+# BuildFolders
+[Bb]in/
+[Oo]bj/
+
+# Don't include any executables
+*.exe
