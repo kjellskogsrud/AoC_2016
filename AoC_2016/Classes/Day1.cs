@@ -40,12 +40,53 @@ namespace AoC_2016.Classes
 
         public void Solve()
         {
+            // For part 2 we need a compleat list of all the point we pass through.
+            // not just the directions at each intersection.
+            // To do this we make a list of positions.
+            List<Position> placesWeHaveBeen = new List<Position>();
+
+            // Since the answer might be where we started, we will add the start.
+            placesWeHaveBeen.Add(new Position(0, 0));
+
+            // and to let us know when to stop looking, we set a bool
+
+            bool duplicatePlaceFound = false;
+            // We need to move differantly than in part 1
             foreach (Instruction i in Directions)
             {
+                /* Part 1 code:
+                //this.face = Face(this.face, i.Rotation);
+                //Move(i.Distance, this.face);
+                */
+
+                // First we start by updating our faceing:
                 this.face = Face(this.face, i.Rotation);
-                Move(i.Distance, this.face);
+
+                // Then instead of moving all the blocks at once we move one by one.
+                for (int c = 0; c < i.Distance; c++)
+                {
+                    Move(1, this.face);
+
+                    // Have we been here before?
+                    // We can check this by compareing our coordinates with all the other coordinates we have visited.
+                    foreach (Position p in placesWeHaveBeen)
+                    {
+                        if (this.x == p.X && this.y == p.Y)
+                        {
+                            // we have been here before!
+                            duplicatePlaceFound = true;
+                            break;
+                        }
+                    }
+                    // Add this place to the list of places we have been
+                    placesWeHaveBeen.Add(new Position(this.x, this.y));
+                    if (duplicatePlaceFound)
+                        break;
+                }
+                if (duplicatePlaceFound)
+                    break;            
             }
-            Console.WriteLine("The end is {0} blocks away from here.", Math.Abs(x) + Math.Abs(y));
+            Console.WriteLine("The end is {0} blocks away from here.", Math.Abs(this.x) + Math.Abs(this.y));
         }
 
 
@@ -114,6 +155,11 @@ namespace AoC_2016.Classes
         {
             public int X;
             public int Y;
+            public Position(int x,int y)
+            {
+                this.X = x;
+                this.Y = y;
+            }
         }
     }
 }
