@@ -27,18 +27,17 @@ namespace AoC_2016.Classes
             //input = new string[4] {"ULL","RRDDD","LURDL","UUUUD" };
 
             // Write the keymap
-            // 1  2  3          00  10  20
-            // 4  5  6          01  11  21
-            // 7  8  9          02  12  22
-            KeyMap[0, 0] = 1;
-            KeyMap[1, 0] = 2;
-            KeyMap[2, 0] = 3;
-            KeyMap[0, 1] = 4;
-            KeyMap[1, 1] = 5;
-            KeyMap[2, 1] = 6;
-            KeyMap[0, 2] = 7;
-            KeyMap[1, 2] = 8;
-            KeyMap[2, 2] = 9;
+            // #  #  1  #  #    00  10  20  30  40
+            // #  2  3  4  #    01  11  21  31  41
+            // 5  6  7  8  9    02  12  22  32  42  
+            // #  A  B  C  #    03  13  23  33  43
+            // #  #  D  #  #    04  14  24  34  44
+            KeyMap[0, 0] = '#'; KeyMap[1, 0] = '#'; KeyMap[2, 0] = '1'; KeyMap[3, 0] = '#'; KeyMap[4, 0] = '#';
+            KeyMap[0, 1] = '#'; KeyMap[1, 1] = '2'; KeyMap[2, 1] = '3'; KeyMap[3, 1] = '4'; KeyMap[4, 1] = '#';
+            KeyMap[0, 2] = '5'; KeyMap[1, 2] = '6'; KeyMap[2, 2] = '7'; KeyMap[3, 2] = '8'; KeyMap[4, 2] = '9';
+            KeyMap[0, 3] = '#'; KeyMap[1, 3] = 'A'; KeyMap[2, 3] = 'B'; KeyMap[3, 3] = 'C'; KeyMap[4, 3] = '#';
+            KeyMap[0, 4] = '#'; KeyMap[1, 4] = '#'; KeyMap[2, 4] = 'D'; KeyMap[3, 4] = '#'; KeyMap[4, 4] = '#';
+
         }
 
         public void Solve()
