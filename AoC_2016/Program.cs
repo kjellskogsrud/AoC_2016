@@ -11,9 +11,13 @@ namespace AoC_2016
     {
         static void Main(string[] args)
         {
+            // Day 2 http://adventofcode.com/2016/day/2
+            Day2 day2 = new Day2();
+            day2.Solve();
+
             // Day 1 http://adventofcode.com/2016/day/1
-            Day1 day1 = new Day1();
-            day1.Solve();
+            //Day1 day1 = new Day1();
+            //day1.Solve();
 
             // Pause to show te results.
             Console.ReadLine();
