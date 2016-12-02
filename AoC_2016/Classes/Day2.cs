@@ -93,6 +93,30 @@ namespace AoC_2016.Classes
                 this.x = 0;
             else if (this.x > 4)
                 this.x = 4;
+
+            // Based on what we did we check the actual keymap
+            switch (direction)
+            {
+                case 'U':
+                    if(KeyMap[this.x,this.y] == '#')
+                        this.y++;
+                    break;
+                case 'D':
+                    if (KeyMap[this.x, this.y] == '#')
+                        this.y--;
+                    break;
+                case 'L':
+                    if (KeyMap[this.x, this.y] == '#')
+                        this.x++;
+                    break;
+                case 'R':
+                    if (KeyMap[this.x, this.y] == '#')
+                        this.x--;
+                    break;
+                default:
+                    break;
+            }
+
         }
  
     }
