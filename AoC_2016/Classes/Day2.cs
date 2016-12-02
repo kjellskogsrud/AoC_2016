@@ -44,8 +44,8 @@ namespace AoC_2016.Classes
         {
             Console.Write("The pincode for the door is: ");
             // Start at 5
-            x = 1;
-            y = 1;
+            x = 0;
+            y = 2;
 
             // Take the first line
             for (int i = 0; i < input.Length; i++)
