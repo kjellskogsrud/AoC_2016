@@ -82,17 +82,17 @@ namespace AoC_2016.Classes
                 default:
                     break;
             }
-            // Clamp Y
+            // Clamp Y (but now it's mostly to avoid any out of bounds errors in the array)
             if (this.y < 0)
                 this.y = 0;
-            else if (this.y > 2)
-                this.y = 2;
+            else if (this.y > 4)
+                this.y = 4;
 
-            // Clamp X
+            // Clamp X (but now it's mostly to avoid any out of bounds errors in the array)
             if (this.x < 0)
                 this.x = 0;
-            else if (this.x > 2)
-                this.x = 2;
+            else if (this.x > 4)
+                this.x = 4;
         }
  
     }
