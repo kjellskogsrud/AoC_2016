@@ -13,7 +13,7 @@ namespace AoC_2016.Classes
         public string[] input;
 
         // We can handle this a a grid, and map the buttons to the coordinates.
-        int[,] KeyMap = new int[3,3];
+        char[,] KeyMap = new char[5,5];
 
         // Then we rmember where we are
         int x;
