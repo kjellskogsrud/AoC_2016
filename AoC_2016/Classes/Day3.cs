@@ -22,6 +22,19 @@ namespace AoC_2016.Classes
 
         public void Solve()
         {
+            // To solve for vertical groups we want to change the input to a more workable format
+            int[,] inputGrid = new int[input.Length, 3];
+
+            // Then we look at each line in our first array and use it to build up the new one.
+            for (int i = 0; i < input.Length; i++)
+            {
+                int[] lineValues = LineToIntArray(input[i]);
+                inputGrid[i, 0] = lineValues[0];
+                inputGrid[i, 1] = lineValues[1];
+                inputGrid[i, 2] = lineValues[2];
+            }
+
+            // With new grid in hand we can work with the same bruteforce method as in part 1 with some modifications
             // Bruteforce metode
             // We start with 0 found triangles:
             int foundTriangles = 0;
