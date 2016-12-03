@@ -38,7 +38,8 @@ namespace AoC_2016.Classes
             // Bruteforce metode
             // We start with 0 found triangles:
             int foundTriangles = 0;
-            for (int i = 0; i < input.Length; i++)
+            // we still count using Input as length but we increment by 3 each time.
+            for (int i = 0; i < input.Length; i = i+3) 
             {
                 bool isTriangle = true;
                 int[] values = LineToIntArray(input[i]);
