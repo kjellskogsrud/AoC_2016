@@ -41,12 +41,11 @@ namespace AoC_2016.Classes
             // we still count using Input as length but we increment by 3 each time.
             for (int i = 0; i < input.Length; i = i+3) 
             {
+                // First Column
                 bool isTriangle = true;
-                int[] values = LineToIntArray(input[i]);
-                isTriangle = (values[1] + values[2] > values[0]) ? true : false;
-                isTriangle = (values[0] + values[2] > values[1] && isTriangle) ? true : false;
-                isTriangle = (values[1] + values[0] > values[2] && isTriangle) ? true : false;
-
+                isTriangle = (inputGrid[i+1,0] + inputGrid[i+2,0] > inputGrid[i,0]) ? true : false;
+                isTriangle = (inputGrid[i,0] + inputGrid[i+2,0] > inputGrid[i+1,0] && isTriangle) ? true : false;
+                isTriangle = (inputGrid[i,0] + inputGrid[i+1,0] > inputGrid[i+2,0] && isTriangle) ? true : false;
                 foundTriangles = (isTriangle) ? foundTriangles+1 : foundTriangles;
                 //if (foundTriangles < 5)
                 //{
