@@ -47,6 +47,21 @@ namespace AoC_2016.Classes
                 isTriangle = (inputGrid[i,0] + inputGrid[i+2,0] > inputGrid[i+1,0] && isTriangle) ? true : false;
                 isTriangle = (inputGrid[i,0] + inputGrid[i+1,0] > inputGrid[i+2,0] && isTriangle) ? true : false;
                 foundTriangles = (isTriangle) ? foundTriangles+1 : foundTriangles;
+
+                // Second Column
+                isTriangle = true;
+                isTriangle = (inputGrid[i + 1, 1] + inputGrid[i + 2, 1] > inputGrid[i, 1]) ? true : false;
+                isTriangle = (inputGrid[i, 1] + inputGrid[i + 2, 1] > inputGrid[i + 1, 1] && isTriangle) ? true : false;
+                isTriangle = (inputGrid[i, 1] + inputGrid[i + 1, 1] > inputGrid[i + 2, 1] && isTriangle) ? true : false;
+                foundTriangles = (isTriangle) ? foundTriangles + 1 : foundTriangles;
+
+                // Third Colum
+                isTriangle = true;
+                isTriangle = (inputGrid[i + 1, 2] + inputGrid[i + 2, 2] > inputGrid[i, 2]) ? true : false;
+                isTriangle = (inputGrid[i, 2] + inputGrid[i + 2, 2] > inputGrid[i + 1, 2] && isTriangle) ? true : false;
+                isTriangle = (inputGrid[i, 2] + inputGrid[i + 1, 2] > inputGrid[i + 2, 2] && isTriangle) ? true : false;
+                foundTriangles = (isTriangle) ? foundTriangles + 1 : foundTriangles;
+
                 //if (foundTriangles < 5)
                 //{
                 //    Console.WriteLine("{0},{1},{2} | {3} | {4} ",values[0], values[1], values[2],isTriangle,foundTriangles);
