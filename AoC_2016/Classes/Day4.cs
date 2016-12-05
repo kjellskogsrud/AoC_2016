@@ -47,12 +47,11 @@ namespace AoC_2016.Classes
             
         }
 
-
-
         // Let's define the rooms for a list of objects
         class Room
         {
             public string EncryptedName { get; protected set; }
+            public string DecryptedName { get; protected set; }
             public int SectorID { get; protected set; }
             public string Checksum { get; protected set; }
 
@@ -67,6 +66,7 @@ namespace AoC_2016.Classes
 
                 // The room then validates itself.
                 isValid = Validate();
+                DecryptedName = Decrypt();
             }
 
             private void ParseRoomString(string roomString)
@@ -118,6 +118,22 @@ namespace AoC_2016.Classes
 
                 // return the result of this evaluation.
                 return (calculatedCheckSum == this.Checksum) ? true : false;
+            }
+            private string Decrypt()
+            {
+                // All the letters
+                string AtoZ = "abcdefghijklmnopqrstuvwxyz";
+
+                StringBuilder returnString = new StringBuilder("");
+
+                // Read each letter
+                for (int i = 0; i < EncryptedName.Length; i++)
+                {
+                    int start = AtoZ.IndexOf(EncryptedName[i]);
+                    returnString.Append(AtoZ[(start + SectorID) % 26]);
+                }
+
+                return returnString.ToString();
             }
         }
     }
