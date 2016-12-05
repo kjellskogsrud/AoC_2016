@@ -9,6 +9,26 @@ namespace AoC_2016.Classes
 {
     class Day5
     {
+        // Somewhere to store our bacis input
+        string doorID = "ugkcyxxp";
+        
+        public void Solve()
+        {
+            int incrementer = 0;
+            StringBuilder password = new StringBuilder("");
+            while (password.ToString().Length < 9)
+            {
+                string hash = CalculateMD5Hash(doorID + incrementer.ToString());
+                if (hash.StartsWith("00000"))
+                {
+                    password.Append(hash[5]);
+                    Console.WriteLine("{0} | {1} | {2}", hash, hash[5], incrementer);
+                }
+                incrementer++;
+            }
+            Console.WriteLine("Incremented {0} times, and the pasword is {1}",incrementer,password.ToString());
+           
+        }
         private string CalculateMD5Hash(string input)
         {
             // step 1, calculate MD5 hash from input
