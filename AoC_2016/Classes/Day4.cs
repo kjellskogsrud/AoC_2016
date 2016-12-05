@@ -37,6 +37,10 @@ namespace AoC_2016.Classes
                 if (r.isValid)
                 {
                     sectorSum = sectorSum + r.SectorID;
+                    if (r.DecryptedName.Contains("northpole"))
+                    {
+                        Console.WriteLine("Room: {0} is in sector {1}",r.DecryptedName,r.SectorID);
+                    }
                 }
             }
         }
