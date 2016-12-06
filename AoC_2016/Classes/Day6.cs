@@ -20,6 +20,29 @@ namespace AoC_2016.Classes
         }
         public void Solve()
         {
+            string[] columns = new string[8] { "", "" , "" , "" , "" , "" , "" , "" };
+            for (int i = 0; i < input.Length; i++)
+            {
+                for (int c = 0; c < columns.Length; c++)
+                {
+                    columns[c] = columns[c] + input[i][c];
+                }
+            }
+
+            // Part 1 solution:
+            for (int i = 0; i < columns.Length; i++)
+            {
+                columns[i] = string.Join("",columns[i].GroupBy(c => c).OrderByDescending(c => c.Count()).Take(26).Select(c => c.Key).ToList());
+                for (int c = 0; c < columns[i].Length; c++)
+                {
+                    if (columns[i][c] == 1)
+                    {
+                        Console.Write(columns[i][c]);
+                    }
+                }
+            }
+
+            
 
         }
 
