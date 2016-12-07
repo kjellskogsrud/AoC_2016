@@ -47,18 +47,33 @@ namespace AoC_2016.Classes
             Dictionary<char, int>[] dictColumns = new Dictionary<char, int>[8];
             for (int i = 0; i < dictColumns.Length; i++)
             {
-                columns[i] = string.Join("",columns[i].GroupBy(c => c).OrderByDescending(c => c.Count()).Take(26).Select(c => c.Key).ToList());
+                dictColumns[i] = new Dictionary<char, int>();
                 for (int c = 0; c < columns[i].Length; c++)
                 {
-                    if (columns[i][c] == 1)
+                    if (dictColumns[i].ContainsKey(columns[i][c]))
                     {
-                        Console.Write(columns[i][c]);
+                        dictColumns[i][columns[i][c]]++;
+                    }
+                    else
+                    {
+                        dictColumns[i].Add(columns[i][c], 1);
                     }
                 }
             }
+            for (int i = 0; i < dictColumns.Length; i++)
+            {
+                int last = 999999999;
+                char found = 'a';
+                foreach (char c in dictColumns[i].Keys)
+                {
+                    found = (dictColumns[i][c] < last) ? c : found;
+                    last = (dictColumns[i][c] < last) ? dictColumns[i][c] : last;
 
+                }
+                Console.Write(found);
+
+            }
             
-
         }
 
     }
