@@ -30,7 +30,22 @@ namespace AoC_2016.Classes
             }
 
             // Part 1 solution:
-            for (int i = 0; i < columns.Length; i++)
+            //for (int i = 0; i < columns.Length; i++)
+            //{
+            //    columns[i] = string.Join("",columns[i].GroupBy(c => c).OrderByDescending(c => c.Count()).Take(26).Select(c => c.Key).ToList());
+            //    for (int c = 0; c < columns[i].Length; c++)
+            //    {
+            //        if (columns[i][c] == 1)
+            //        {
+            //            Console.Write(columns[i][c]);
+            //        }
+            //    }
+            //}
+            Console.Write("\n");
+            Console.WriteLine("----------------------");
+            // Part 2 solution
+            Dictionary<char, int>[] dictColumns = new Dictionary<char, int>[8];
+            for (int i = 0; i < dictColumns.Length; i++)
             {
                 columns[i] = string.Join("",columns[i].GroupBy(c => c).OrderByDescending(c => c.Count()).Take(26).Select(c => c.Key).ToList());
                 for (int c = 0; c < columns[i].Length; c++)
