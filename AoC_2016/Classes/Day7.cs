@@ -29,19 +29,25 @@ namespace AoC_2016.Classes
                 addressList.Add(new IPV7(input[i]));
             }
             int SupportsTSL = 0;
+            int SupportsSSL = 0;
 
             foreach (IPV7 i in addressList)
             {
                 if (i.SupportsTSL)
                     SupportsTSL++;
+                if (i.SupportsSSL)
+                    SupportsSSL++;
             }
             Console.WriteLine("Of the {0} IPv7 addresses collected {1} supports TSL.",addressList.Count(), SupportsTSL);
+            Console.WriteLine("Of the {0} IPv7 addresses collected {1} supports SSL.", addressList.Count(), SupportsSSL);
+            
         }
         class IPV7
         {
             public string SupernetSequence { get; protected set; }
             public string HypernetSequence { get; protected set; }
             public bool SupportsTSL { get; protected set; }
+            public bool SupportsSSL { get; protected set; }
 
             public IPV7(string IPV7)
             {
@@ -50,6 +56,19 @@ namespace AoC_2016.Classes
                 // Does it support TSL?
                 if (HasABBA(SupernetSequence) && !HasABBA(HypernetSequence))
                     SupportsTSL = true;
+
+                // Does is support SSL?
+                string[] ABAs; 
+                if(HasABA(SupernetSequence,out ABAs)){
+                    for (int i = 0; i < ABAs.Length; i++)
+                    {
+                        if (HasBAB(HypernetSequence, ABAs[i]))
+                        {
+                            SupportsSSL = true;
+                        }
+                    }
+                }
+            }
 
             private void DecodeIPV7(string IPV7)
             {
@@ -86,6 +105,43 @@ namespace AoC_2016.Classes
                 }
                 this.HypernetSequence = readHypernetSequence.ToString();
                 this.SupernetSequence = readSupernetSequence.ToString();
+            }
+            private bool HasABBA(string sequence)
+            {
+                bool hasABBA = false;
+                for (int i = 0; i < sequence.Length-3; i++)
+                {
+                    if (sequence[i] == sequence[i + 3] && sequence[i + 1] == sequence[i + 2] && sequence[i] != sequence[i + 1])
+                    {
+                        hasABBA = true;
+                        return hasABBA;
+                    }
+                }
+                return hasABBA;
+            }
+            private bool HasABA(string sequence, out string[] ABA)
+            {
+                List<string> foundABA = new List<string>();
+                bool hasABA = false;
+
+                for (int i = 0; i < sequence.Length - 2; i++)
+                {
+                    if (sequence[i] == sequence[i + 2] && sequence[i] != sequence[i+1])
+                    {
+                        //Console.WriteLine("Found ABA in Supernet: {0}", sequence[i].ToString() + sequence[i + 1].ToString() + sequence[i + 2].ToString());
+                        foundABA.Add(sequence[i].ToString() + sequence[i + 1].ToString() + sequence[i + 2].ToString());
+                        hasABA = true;
+                        //Console.ReadLine();
+                    }
+                }
+                ABA = foundABA.ToArray();
+                return hasABA;
+            }
+            private bool HasBAB(string sequence, string ABA)
+            {
+                if (sequence.Contains(ABA[1].ToString() + ABA[0].ToString() + ABA[1].ToString()))
+                    return true;
+                return false;
             }
         }
     }
