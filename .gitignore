@@ -4,10 +4,12 @@
 
 .vs
 *.TMP
+packages.config
 
 # BuildFolders
 [Bb]in/
 [Oo]bj/
+packages/
 
 # Don't include any executables
 *.exe
